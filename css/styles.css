@@ -1,0 +1,232 @@
+/* Font style imported from Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 12px; } 
+::-webkit-scrollbar-thumb { background-color: #000; } 
+::-webkit-scrollbar-track { background-color: #000; } 
+
+* { box-sizing: border-box; } /* Prevents padding and border from affecting element size */
+
+body {
+  margin: 0;
+  font-family: "Rubik Glitch", system-ui;
+  font-weight: 400;
+  font-size: 45px;
+  background: #000; /* Black background */
+  color: #39ff14;   /* Neon green text */
+  overflow-x: hidden;
+}
+
+#tittle {
+  position: absolute;
+  left: 50%;
+  top: 55px;
+  transform: translateX(-50%);
+  color: #39ff14;
+  text-align: center;
+  z-index: 102;
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* Sky and Stars */
+.sky {
+  position: relative;
+  height: 80vh;
+  overflow: hidden; /* Hides anything outside */
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0; /* Start invisible */
+  animation: twinkle 2s infinite ease-in-out; /* Apply twinkle animation repeatedly */
+}
+
+/* Star sparkle animation */
+@keyframes twinkle {
+  0%, 100% { opacity: 0; }
+  50%      { opacity: 1; }
+}
+
+/* Star image and positions */
+#starOne   { top: 5%;  left: 10%; animation-delay: 0s;   background-image: url('../images/starOne.png'); } 
+#starTwo   { top: 12%; left: 84%; animation-delay: 0.4s; background-image: url('../images/starTwo.png'); }
+#starThree { top: 8%;  left: 48%; animation-delay: 0.8s; background-image: url('../images/starThree.png'); }
+#starFour  { top: 28%; left: 60%; animation-delay: 1.2s; background-image: url('../images/starFour.png'); }
+#starFive  { top: 36%; left: 15%; animation-delay: 1.6s; background-image: url('../images/starFive.png'); }
+#starSix   { top: 45%; left: 75%; animation-delay: 2s;   background-image: url('../images/starSix.png'); }
+#starSeven { top: 52%; left: 25%; animation-delay: 0.6s; background-image: url('../images/starSeven.png'); }
+#starEight { top: 60%; left: 50%; animation-delay: 1.4s; background-image: url('../images/starEight.png'); }
+#starNine  { top: 68%; left: 90%; animation-delay: 1.8s; background-image: url('../images/starNine.png'); }
+#starTen   { top: 74%; left: 40%; animation-delay: 2.2s; background-image: url('../images/starTen.png'); }
+#starEleven{ top: 74%; left: 5%;  animation-delay: 1.2s; background-image: url('../images/starTen.png'); }
+
+/* UFO container */
+.ufo-container {
+  position: absolute;
+  top: 50px;
+  width: 100%;
+  animation: floatTilt 6s infinite alternate ease-in-out; /* Gentle UFO movement */
+  z-index: 100;
+}
+
+/* UFO floating animation */
+@keyframes floatTilt {
+  0%   { transform: translateX(100px) rotate(0deg); }   /* Starts at 100px from the left, no tilt */
+  50%  { transform: translateX(575px) rotate(10deg); }  /* Floats right and tilts slightly */
+  100% { transform: translateX(1250px) rotate(0deg); }  /* Moves farther right, tilt back to normal */
+}
+
+.ufo {
+  position: relative;
+  top: 230px;
+  width: 380px;
+  height: 360px;
+  background: url('../images/ufo.png') no-repeat center / contain; /* AI prompt UFO image */
+  z-index: 2; 
+}
+
+/* Lightning bolts */
+.bolt {
+  position: absolute;
+  bottom: -190px;
+  left: 52%;
+  width: 14px;
+  height: var(--len, 180px);
+  background: linear-gradient(#39ff14, #ffff66, white);
+  box-shadow: 0 0 20px #39ff14, 0 0 40px yellow, 0 0 60px white;
+  clip-path: polygon(
+    50% 0%, 60% 20%, 40% 20%, 70% 50%, 
+    50% 50%, 80% 100%, 30% 70%, 45% 70%, 
+    20% 40%, 50% 40%
+  );
+  opacity: 0;
+  transform-origin: top center;
+  transform: translateX(var(--tx, -50%)) rotate(var(--rot, 0deg)) scaleY(0);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Lightning flash animation */
+.bolt.shoot-lightning {
+  animation: lightningStrike 0.8s ease-out forwards;
+}
+
+@keyframes lightningStrike {
+  0%   { opacity: 1; transform: translateX(var(--tx, -50%)) rotate(var(--rot, 0deg)) scaleY(0); }
+  60%  { opacity: 1; transform: translateX(var(--tx, -50%)) rotate(var(--rot, 0deg)) scaleY(1); }
+  100% { opacity: 0; transform: translateX(var(--tx, -50%)) rotate(var(--rot, 0deg)) scaleY(0); }
+}
+
+/* Bolt variations */
+.bolt1 { --len: 220px; --rot: -18deg; --tx: -90%; }
+.bolt2 { --len: 180px; --rot: 0deg;   --tx: -50%; }
+.bolt3 { --len: 250px; --rot: 20deg;  --tx: -10%; }
+
+/* Cow */
+.cow {
+  position: absolute;
+  bottom: 12%;
+  left: 80%;
+  width: 400px;
+  height: 380px;
+  background: url('../images/cow.png') no-repeat center / contain; /* AI prompt cow image */
+  transform: translateX(-50%);
+  transition: transform 1s ease, opacity 2s ease; /* Smoothly animate movement and fading */
+  z-index: 10; /* Keep cow above lower layer elements */
+}
+
+/* Divider line */
+.line {
+  height: 2px;
+  width: 100%;
+  background-color: #39ff14;
+  margin: -70px 0;
+}
+
+/* Abduct button */
+.abduct {
+  position: absolute;
+  bottom: 4%;
+  left: 50%;
+  width: 370px;
+  height: 350px;
+  background: url('../images/abduct.png') no-repeat center / contain; /* AI prompt abduct button image */
+  cursor: pointer;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+/* Wiggle animation for button */
+@keyframes wiggle {
+  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+  25%      { transform: translateX(-50%) rotate(3deg); }
+  50%      { transform: translateX(-50%) rotate(-3deg); }
+  75%      { transform: translateX(-50%) rotate(3deg); }
+}
+
+.abduct.wiggle { animation: wiggle 0.5s ease-in-out infinite; }
+
+/* Swap to abort button image */
+.abduct.is-abort { background-image: url('../images/abort.png'); } /* Change abduct button image to abort button. AI prompt abort button image */
+
+.abduct:focus { outline: none; } /* Removes browser focus outline */
+.abduct:focus-visible {
+  outline: 2px solid #39ff14;
+  outline-offset: 6px;
+}
+
+/* Cow disappears when abducted */
+.abducted .cow {
+  transform: translateX(-50%) translateY(-200px) scale(0);
+  opacity: 0;
+}
+
+/* Slime cow */
+.slimeCow {
+  position: absolute;
+  bottom: 12%;
+  right: 56%;
+  width: 403px;
+  height: 383px;
+  background: url('../images/slimeCow.png') no-repeat center / contain; /* AI prompt slime cow image */
+  transform: translateX(-50%) translateY(-200px) scale(0);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 3s ease, opacity 3s ease, visibility 0s linear 3s; /* Smoothly animate appearance and disappearance */
+}
+
+/* Show slime cow */
+.slimeCow.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0) scale(1);
+  transition: transform 1s ease, opacity 1s ease; /* Smoothly animate movement and fading in */
+}
+
+/* Instructions */
+#instructions {
+  position: fixed;
+  bottom: 60px;
+  left: 5px;
+  font-size: 18px;
+  text-align: left;
+  font-family: "DM Mono", monospace;
+}
+
+/* Copywrite */
+#copyright {
+  position: fixed;
+  bottom: 0;
+  left: 10px;
+  font-size: 18px;
+  text-align: left;
+  font-family: "DM Mono", monospace;
+}
